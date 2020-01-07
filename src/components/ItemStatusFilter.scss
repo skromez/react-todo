@@ -1,0 +1,18 @@
+.btn-group {
+  min-width: 39%;
+}
+
+.filter-btn {
+  margin-right: 0;
+  background: white;
+  color: gray;
+
+  &:hover {
+    background: dodgerblue;
+  }
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active {
+  background: dodgerblue;
+  border: dodgerblue;
+}

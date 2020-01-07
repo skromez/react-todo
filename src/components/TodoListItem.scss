@@ -1,0 +1,12 @@
+.todo__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  width: 40px;
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
