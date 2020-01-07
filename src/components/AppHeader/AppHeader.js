@@ -1,10 +1,10 @@
 import React from 'react';
 import './AppHeader.scss';
 
-const AppHeader = () => (
+const AppHeader = ({ toDo, done }) => (
   <div className="app-header">
     <h1>My Todo List</h1>
-    <p>1 more to do, 3 done</p>
+    <p>{toDo} more to do, {done} done</p>
   </div>
 );
 

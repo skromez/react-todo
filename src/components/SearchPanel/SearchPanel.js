@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemStatusFilter from './ItemStatusFIlter';
+import ItemStatusFilter from '../ItemStatusFilter';
 import './SearchPanel.scss';
 
 const SearchPanel = () => {
