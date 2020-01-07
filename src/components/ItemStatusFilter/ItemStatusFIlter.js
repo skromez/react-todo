@@ -6,7 +6,7 @@ export default class ItemStatusFilter extends Component {
     return (
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
         <label className="btn filter-btn btn-secondary active">
-          <input type="radio" name="options" id="option1" checked />
+          <input type="radio" name="options" id="option1" defaultChecked />
           All
         </label>
         <label className="btn filter-btn btn-secondary">
