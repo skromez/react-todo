@@ -10,7 +10,7 @@
   }
 }
 
-button {
+.todo-item-btn {
   width: 40px;
   &:not(:last-child) {
     margin-right: 10px;
