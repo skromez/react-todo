@@ -1,3 +1,3 @@
-import ItemStatusFilter from './ItemStatusFIlter';
+import ItemStatusFilter from './ItemStatusFilter';
 
 export default ItemStatusFilter;

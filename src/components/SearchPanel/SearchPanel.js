@@ -1,17 +1,15 @@
 import React from 'react';
-import ItemStatusFilter from '../ItemStatusFilter';
 import './SearchPanel.scss';
 
-const SearchPanel = () => {
-
+const SearchPanel = ({ onChange }) => {
   return (
     <div className="search-panel">
       <input
         className="form-control"
         type="text"
         placeholder="type to search"
+        onChange={onChange}
       />
-      <ItemStatusFilter />
     </div>
   );
 };

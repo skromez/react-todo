@@ -3,6 +3,7 @@ import './App.scss';
 import TodoList from '../TodoList';
 import AppHeader from '../AppHeader';
 import SearchPanel from '../SearchPanel';
+import ItemStatusFilter from '../ItemStatusFilter/ItemStatusFilter';
 import ItemAddForm from '../ItemAddForm';
 
 class App extends Component {
@@ -14,7 +15,9 @@ class App extends Component {
       this.createTodoItem('Drink Coffee'),
       this.createTodoItem('Make Awesome App'),
       this.createTodoItem('Have a lunch'),
-    ]
+    ],
+    filtered: '',
+    status: 'all'
   };
 
   createTodoItem(label) {
@@ -72,21 +75,60 @@ class App extends Component {
     });
   };
 
+  search(items, filtered) {
+    if (filtered.length === 0) {
+      return items;
+    }
+
+    return items.filter((item, i, arr) => {
+      return item.label.toLowerCase().indexOf(filtered.toLowerCase()) > -1;
+    });
+  }
+
+  onChange = (evt) => {
+    this.setState({
+      filtered: evt.target.value
+    });
+    console.log(this.state.filtered);
+  };
+
+  onFilterChange = (status) => {
+    this.setState({status})
+  };
+
+  filter(items, status) {
+    switch (status) {
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((item) => !item.done);
+      case 'done':
+        return items.filter((item) => item.done);
+      default:
+        return items;
+    }
+  }
+
+
   render() {
 
-    const { todoData } = this.state;
+    const { todoData, filtered, status } = this.state;
 
+    const visibleItems = this.filter(this.search(todoData, filtered), status);
     const doneCount = todoData.filter((el) => el.done).length;
-    const todoCount = todoData.length - doneCount;
 
+    const todoCount = todoData.length - doneCount;
     return (
       <div className="app">
         <AppHeader toDo={todoCount} done={doneCount} />
-        <SearchPanel />
+        <div className="wrapper">
+          <SearchPanel onChange={this.onChange} />
+          <ItemStatusFilter status={status} onFilterChange={this.onFilterChange} />
+        </div>
         <TodoList
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
-          todos={todoData}
+          todos={visibleItems}
           onDeleted={this.deleteItem}
         />
         <ItemAddForm addItem={this.addItem} />
